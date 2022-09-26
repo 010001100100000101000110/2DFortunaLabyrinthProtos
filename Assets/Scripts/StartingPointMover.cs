@@ -12,14 +12,17 @@ public class StartingPointMover : MonoBehaviour
     [SerializeField] Transform areaPoint1;
     [SerializeField] Transform areaPoint2;
 
+    [SerializeField] float lerpSpeed;
+
     void Start()
     {
-        StartCoroutine(LinearMovementBack());
+        //StartCoroutine(LinearMovementBack());
     }
 
     void Update()
     {
-        
+        SetLerpSpeed();
+
 
         //Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         //if (Input.GetMouseButtonDown(0))
@@ -42,32 +45,50 @@ public class StartingPointMover : MonoBehaviour
         //}
     }
 
-    //IEnumerator LinearMovementTo()
-    //{
-    //    float ElapsedTime = 0;
-    //    float TotalTime = 3;
 
-    //    while (ElapsedTime < TotalTime)
-    //    {
-    //        ElapsedTime += Time.deltaTime;
-    //        player.transform.position = Vector3.Lerp(areaPoint1.position, areaPoint2.position, ElapsedTime/TotalTime );
+    void SetLerpSpeed()
+    {
+        float length = 0;
+        float totalLength = 7;
+        bool addTime = false;
 
-    //    }
-    //   //StartCoroutine(LinearMovementBack());
-    //    yield return null;
-    //}
+        if (length < 0) addTime = true;
+        if (length > totalLength) addTime = false;
+
+        while (addTime) length += Time.deltaTime;
+        while (!addTime) length -= Time.deltaTime;
+
+        lerpSpeed = length / totalLength;
+    }
+
+    IEnumerator LinearMovementTo()
+    {
+        float ElapsedTime = 0;
+        float TotalTime = 3;
+
+        while (ElapsedTime < TotalTime)
+        {
+            ElapsedTime += Time.deltaTime;
+            player.transform.position = Vector3.Lerp(areaPoint1.position, areaPoint2.position, ElapsedTime / TotalTime);
+            
+        }
+        yield return null;
+        //StartCoroutine(LinearMovementBack());
+
+    }
 
     IEnumerator LinearMovementBack()
     {
-        float ElapsedTime = 3;
-        float TotalTime = 0;
+        float ElapsedTime = 0;
+        float TotalTime = 3;
 
-        while (ElapsedTime > TotalTime)
+        while (ElapsedTime < TotalTime)
         {
-            ElapsedTime -= Time.deltaTime;
+            TotalTime -= Time.deltaTime;
             player.transform.position = Vector3.Lerp(areaPoint1.position, areaPoint2.position, TotalTime / ElapsedTime);
+            yield return null;
         }
         //StartCoroutine(LinearMovementTo());
-        yield return null;
+        
     }
 }
