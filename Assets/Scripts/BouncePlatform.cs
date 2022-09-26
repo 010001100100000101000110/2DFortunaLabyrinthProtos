@@ -12,12 +12,4 @@ public class BouncePlatform : MonoBehaviour
 
         rb.AddForce(this.transform.up * bounceForce, ForceMode2D.Impulse);
     }
-
-    Vector2 GetTrajectory(Quaternion angle)
-    {
-        Vector2 trajectory = Vector2.up;
-
-
-        return trajectory;
-    }
 }
