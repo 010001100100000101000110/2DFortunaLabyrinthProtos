@@ -937,8 +937,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedPlayer: {fileID: 0}
-  launchForce: 30
-  maxForce: 30
+  launchForce: 500
+  maxForce: 500
   canLaunch: 0
 --- !u!50 &545595984
 Rigidbody2D:
@@ -991,7 +991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canRenderLine: 0
-  lineLength: 4
+  maxLineLength: 0
 --- !u!120 &545595987
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1286,7 +1286,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: -42.09
+  near clip plane: -5
   far clip plane: 5
   field of view: 60
   orthographic: 1
