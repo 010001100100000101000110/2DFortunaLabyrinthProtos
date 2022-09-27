@@ -7,33 +7,37 @@ using TMPro;
 public class SlingshotMovement : MonoBehaviour
 {
     EventListenerMethods eventMethods;
+    UIBallLaunchForce ballUI;
     Rigidbody2D rigidbody;
 
     [SerializeField] GameObject selectedPlayer;
-    Vector3 offset;
+    //Vector3 offset;
+    [SerializeField] float launchForce;
+    [SerializeField] float maxForce;
 
-    bool launchingActive;
+    [SerializeField] bool canLaunch;
 
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         eventMethods = FindObjectOfType<EventListenerMethods>();
+        ballUI = GetComponent<UIBallLaunchForce>();
     }
 
 
     void Update()
     {
-        if (launchingActive) LaunchBallMode();
+        if (canLaunch) LaunchBallMode();
 
     }
 
     public void ActivateLaunching()
     {
-        launchingActive = true;
+        canLaunch = true;
     }
     public void DeActivateLaunching()
     {
-        launchingActive = false;
+        canLaunch = false;
     }
 
     void LaunchBallMode()
@@ -45,19 +49,20 @@ public class SlingshotMovement : MonoBehaviour
             if (targetObject)
             {
                 selectedPlayer = targetObject.transform.gameObject;
-                offset = selectedPlayer.transform.position - mousePosition;
+                //offset = selectedPlayer.transform.position - mousePosition;
             }
+            
         }
-        if (selectedPlayer)
+        if (selectedPlayer && selectedPlayer.tag == "Player")
         {
-            //dragImage.SetActive(true);            
-            //dragImage.transform.position = mousePosition + offset;
-            Debug.Log(Vector3.Distance(this.transform.position, mousePosition));
+            //Debug.Log(Vector3.Distance(this.transform.position, mousePosition));
+            ballUI.CanLineRender();
         }
-        if (Input.GetMouseButtonUp(0) && selectedPlayer)
+        if (Input.GetMouseButtonUp(0) && selectedPlayer && selectedPlayer.tag == "Player")
         {
             selectedPlayer = null;
             Debug.Log("LAUNCHED BALL");
+            ballUI.CantLineRender();
             LaunchBall();
         }
     }
@@ -65,12 +70,22 @@ public class SlingshotMovement : MonoBehaviour
     void LaunchBall()
     {
         rigidbody.bodyType = RigidbodyType2D.Dynamic;
+        rigidbody.constraints = RigidbodyConstraints2D.None;
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 playerPos = this.transform.position;
+        this.rigidbody.freezeRotation = false;
         eventMethods.BallLaunched();
 
         Vector2 trajectoryDir = playerPos - mousePosition;
-        float launchForce = Vector2.Distance(playerPos, mousePosition) * 20;
-        rigidbody.AddForce(trajectoryDir * launchForce);
+        
+        float force = (Vector2.Distance(playerPos, mousePosition)) * launchForce;
+        float clampForce = Mathf.Clamp(force, 0, maxForce);
+
+        Debug.Log("distance on " + Vector2.Distance(playerPos, mousePosition));
+        Debug.Log("force on " + force);
+        Debug.Log("clampattu force " + clampForce);
+
+        rigidbody.AddForce(trajectoryDir.normalized * clampForce, ForceMode2D.Force);
+        canLaunch = false;
     }
 }
