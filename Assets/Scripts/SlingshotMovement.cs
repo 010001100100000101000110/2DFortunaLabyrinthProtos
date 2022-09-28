@@ -4,33 +4,74 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class SlingshotMovement : MonoBehaviour
+public class SlingshotMovement : Helper
 {
     EventListenerMethods eventMethods;
     UIBallLaunchForce ballUI;
-    Rigidbody2D rigidbody;
 
-    [SerializeField] GameObject selectedPlayer;
-    //Vector3 offset;
+    GameObject selected;
+    bool canLaunch;
     [SerializeField] float launchForce;
-    [SerializeField] float maxForce;
-
-    [SerializeField] bool canLaunch;
+    [SerializeField] float maxPullDistance;
+    
+    
 
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
         eventMethods = FindObjectOfType<EventListenerMethods>();
-        ballUI = GetComponent<UIBallLaunchForce>();
+        ballUI = FindObjectOfType<UIBallLaunchForce>();
     }
 
 
     void Update()
     {
+        base.Update();
         if (canLaunch) LaunchBallMode();
+    } 
 
+    void LaunchBallMode()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
+            if (targetObject)
+            {
+                selected = targetObject.transform.gameObject;
+            }            
+        }
+        if (selected && selected.tag == "Player") ballUI.CanLineRender();
+        if (Input.GetMouseButtonUp(0) && selected && selected.tag == "Player")
+        {
+            selected = null;
+            ballUI.CantLineRender();
+            LaunchBall();
+            eventMethods.BallLaunched();
+        }
     }
 
+    void LaunchBall()
+    {
+        rigidbody.bodyType = RigidbodyType2D.Dynamic;
+        rigidbody.constraints = RigidbodyConstraints2D.None;
+
+        Vector2 playerPos = transform.position;
+        rigidbody.freezeRotation = false;
+        eventMethods.BallLaunched();
+
+        Vector2 trajectoryDir = (playerPos - mousePosition).normalized;
+
+        float distance = (Vector2.Distance(playerPos, mousePosition));
+        float clampDistance = Mathf.Clamp(distance, 0, maxPullDistance);
+
+        float force = clampDistance * launchForce;
+
+        Debug.Log("distance on " + distance);
+        Debug.Log("clampDistance on " + clampDistance);
+        Debug.Log("force on " + force);
+
+        rigidbody.AddForce(trajectoryDir * force, ForceMode2D.Impulse);
+        canLaunch = false;
+    }
     public void ActivateLaunching()
     {
         canLaunch = true;
@@ -39,53 +80,8 @@ public class SlingshotMovement : MonoBehaviour
     {
         canLaunch = false;
     }
-
-    void LaunchBallMode()
+    public float GetMaxDistance()
     {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (Input.GetMouseButtonDown(0))
-        {
-            Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
-            if (targetObject)
-            {
-                selectedPlayer = targetObject.transform.gameObject;
-                //offset = selectedPlayer.transform.position - mousePosition;
-            }
-            
-        }
-        if (selectedPlayer && selectedPlayer.tag == "Player")
-        {
-            //Debug.Log(Vector3.Distance(this.transform.position, mousePosition));
-            ballUI.CanLineRender();
-        }
-        if (Input.GetMouseButtonUp(0) && selectedPlayer && selectedPlayer.tag == "Player")
-        {
-            selectedPlayer = null;
-            Debug.Log("LAUNCHED BALL");
-            ballUI.CantLineRender();
-            LaunchBall();
-        }
-    }
-
-    void LaunchBall()
-    {
-        rigidbody.bodyType = RigidbodyType2D.Dynamic;
-        rigidbody.constraints = RigidbodyConstraints2D.None;
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 playerPos = this.transform.position;
-        this.rigidbody.freezeRotation = false;
-        eventMethods.BallLaunched();
-
-        Vector2 trajectoryDir = playerPos - mousePosition;
-        
-        float force = (Vector2.Distance(playerPos, mousePosition)) * launchForce;
-        float clampForce = Mathf.Clamp(force, 0, maxForce);
-
-        Debug.Log("distance on " + Vector2.Distance(playerPos, mousePosition));
-        Debug.Log("force on " + force);
-        Debug.Log("clampattu force " + clampForce);
-
-        rigidbody.AddForce(trajectoryDir.normalized * clampForce, ForceMode2D.Force);
-        canLaunch = false;
+        return maxPullDistance;
     }
 }

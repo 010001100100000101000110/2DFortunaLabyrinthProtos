@@ -1,32 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
-public class UIBallLaunchForce : MonoBehaviour
+public class UIBallLaunchForce : Helper
 {
     LineRenderer line;
-
-    [SerializeField] bool canRenderLine;
-    [SerializeField] float maxLineLength;
+    SlingshotMovement slingMovement;
+    [SerializeField] Image image;
+    
+    [SerializeField] float maxDistance;
+    float distance;
+    bool canRenderLine;
 
     void Start()
     {
         line = GetComponent<LineRenderer>();
+        slingMovement = FindObjectOfType<SlingshotMovement>();
     }
 
     void Update()
     {
-        if (canRenderLine) LineRendererTing();
+        base.Update();
+        distance = Vector3.Distance(player.transform.position, mousePosition);
+        
+        if (canRenderLine)
+        {
+            LineRendererTing();
+            UpdateSlider();
+        }
     }
 
     void LineRendererTing()
     {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        line.SetPosition(0, this.transform.position);
+        line.SetPosition(0, player.transform.position);
         line.SetPosition(1, mousePosition);
-        if ((Vector3.Distance(line.GetPosition(0), line.GetPosition(1))) > maxLineLength)
-        {            
-        }
     }
 
     public void CanLineRender()
@@ -41,4 +50,8 @@ public class UIBallLaunchForce : MonoBehaviour
         line.enabled = false;
     }
 
+    void UpdateSlider()
+    {
+        image.fillAmount = distance / slingMovement.GetMaxDistance();
+    }
 }
