@@ -8,7 +8,15 @@ public class ResetUIAtStart : MonoBehaviour
 {
     [SerializeField] GameObject startPanel;
     [SerializeField] GameObject pickPositionPanel;
-    [SerializeField] GameObject ;
-    [SerializeField] GameObject ;
-    
+    [SerializeField] GameObject launchingModePanel;
+    [SerializeField] GameObject ballActivePanel;
+
+    void Start()
+    {
+        startPanel.SetActive(true);
+        pickPositionPanel.SetActive(false);
+        launchingModePanel.SetActive(false);
+        ballActivePanel.SetActive(false);
+    }
+
 }
