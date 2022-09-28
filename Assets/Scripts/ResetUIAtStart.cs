@@ -6,17 +6,16 @@ using TMPro;
 
 public class ResetUIAtStart : MonoBehaviour
 {
-    [SerializeField] GameObject startPanel;
     [SerializeField] GameObject pickPositionPanel;
     [SerializeField] GameObject launchingModePanel;
     [SerializeField] GameObject ballActivePanel;
+    [SerializeField] GameObject gameOverPanel;
 
     void Start()
     {
-        startPanel.SetActive(true);
-        pickPositionPanel.SetActive(false);
+        pickPositionPanel.SetActive(true);
         launchingModePanel.SetActive(false);
         ballActivePanel.SetActive(false);
+        gameOverPanel.SetActive(false); 
     }
-
 }

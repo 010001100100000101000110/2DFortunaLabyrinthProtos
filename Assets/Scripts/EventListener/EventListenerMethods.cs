@@ -4,29 +4,23 @@ using UnityEngine;
 using System;
 
 public class EventListenerMethods : MonoBehaviour
-{
-    [SerializeField] GameEvent OnDecidingStartingPlace;
-    [SerializeField] GameEvent OnStartingPlaceDecided;
-
-    [SerializeField] GameEvent OnResetButtonHit;
+{   
     [SerializeField] GameEvent OnBallLaunched;
+    [SerializeField] GameEvent OnGameOver;
+    [SerializeField] GameEvent OnTryAgain;
 
-    public void DecidingStartingPlace()
-    {
-        OnDecidingStartingPlace?.Raise();
-    }
-
-    public void StartingPlaceDecided()
-    {
-        OnStartingPlaceDecided?.Raise();
-    }
+    
     public void BallLaunched()
     {
         OnBallLaunched?.Raise();
+    }   
+    public void GameOver()
+    {
+        OnGameOver?.Raise();
     }
 
-    public void ResetBall()
+    public void TryAgain()
     {
-        OnResetButtonHit?.Raise();
+        OnTryAgain?.Raise();
     }
 }

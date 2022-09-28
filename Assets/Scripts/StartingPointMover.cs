@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class StartingPointMover : Helper
 {
-    [SerializeField] GameObject selected;
-    
+    GameObject selected;    
     [SerializeField] Transform areaPoint1;
     [SerializeField] Transform areaPoint2;
         
@@ -24,7 +23,6 @@ public class StartingPointMover : Helper
 
     void MoveBallWithMouse()
     {
-        Debug.Log(mousePosition);
         this.rigidbody.constraints = RigidbodyConstraints2D.FreezePositionY;     
         float xPos = Mathf.Clamp(mousePosition.x, areaPoint1.position.x, areaPoint2.position.x);
         if (Input.GetMouseButtonDown(0))

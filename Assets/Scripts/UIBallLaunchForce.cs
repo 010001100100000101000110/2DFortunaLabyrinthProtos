@@ -10,7 +10,6 @@ public class UIBallLaunchForce : Helper
     SlingshotMovement slingMovement;
     [SerializeField] Image image;
     
-    [SerializeField] float maxDistance;
     float distance;
     bool canRenderLine;
 

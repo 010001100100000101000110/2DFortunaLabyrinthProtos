@@ -6,7 +6,6 @@ public class BallBounce : Helper
 {
     Vector3 lastVelocity;
     [SerializeField] float bounceForce;
-
     void Update()
     {
         lastVelocity = rigidbody.velocity;
@@ -17,5 +16,6 @@ public class BallBounce : Helper
         Vector3 direction = Vector3.Reflect(lastVelocity.normalized, collision.contacts[0].normal);
 
         if(collision.gameObject.tag == "Bounce") rigidbody.velocity = direction * bounceForce;
+        if (collision.gameObject.tag == "Danger") eventMethods.GameOver();
     }
 }

@@ -6,7 +6,6 @@ using TMPro;
 
 public class SlingshotMovement : Helper
 {
-    EventListenerMethods eventMethods;
     UIBallLaunchForce ballUI;
 
     GameObject selected;
@@ -14,11 +13,8 @@ public class SlingshotMovement : Helper
     [SerializeField] float launchForce;
     [SerializeField] float maxPullDistance;
     
-    
-
     void Start()
     {
-        eventMethods = FindObjectOfType<EventListenerMethods>();
         ballUI = FindObjectOfType<UIBallLaunchForce>();
     }
 
