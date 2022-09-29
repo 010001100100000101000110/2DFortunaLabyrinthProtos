@@ -11,7 +11,7 @@ public class Movement : Helper_G
     [SerializeField] float launchForce;
     [SerializeField] float maxPullDistance;
 
-    Vector3 lastPosition;
+    public Vector3 lastPosition { get; private set; }
 
     void Start()
     {
@@ -80,7 +80,6 @@ public class Movement : Helper_G
 
     public void ResetMovement()
     {
-        rigidbody.velocity = new Vector3(0, 0, 0);
-        
+        rigidbody.velocity = new Vector3(0, 0, 0);       
     }
 }
