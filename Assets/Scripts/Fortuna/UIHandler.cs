@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UIBallLaunchForce : Helper
+public class UIHandler : Helper
 {
     LineRenderer line;
     SlingshotMovement slingMovement;
@@ -13,8 +13,14 @@ public class UIBallLaunchForce : Helper
     float distance;
     bool canRenderLine;
 
+    [SerializeField] GameObject pickPositionPanel;
+    [SerializeField] GameObject launchingModePanel;
+    [SerializeField] GameObject ballActivePanel;
+    [SerializeField] GameObject gameOverPanel;
+
     void Start()
     {
+        ResetUIAtStart();
         line = GetComponent<LineRenderer>();
         slingMovement = FindObjectOfType<SlingshotMovement>();
     }
@@ -52,5 +58,13 @@ public class UIBallLaunchForce : Helper
     void UpdateSlider()
     {
         image.fillAmount = distance / slingMovement.GetMaxDistance();
+    }
+
+    void ResetUIAtStart()
+    {
+        pickPositionPanel.SetActive(true);
+        launchingModePanel.SetActive(false);
+        ballActivePanel.SetActive(false);
+        gameOverPanel.SetActive(false);
     }
 }

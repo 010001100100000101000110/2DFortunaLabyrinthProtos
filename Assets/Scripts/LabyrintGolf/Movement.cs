@@ -1,21 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
-public class SlingshotMovement : Helper
+public class Movement : Helper
 {
-    UIBallLaunchForce ballUI;
-
+    UIHandler_G ballUI;
+ 
     GameObject selected;
     bool canLaunch;
     [SerializeField] float launchForce;
     [SerializeField] float maxPullDistance;
-    
+
     void Start()
     {
-        ballUI = FindObjectOfType<UIBallLaunchForce>();
+        ballUI = FindObjectOfType<UIHandler_G>();
+        canLaunch = true;
     }
 
 
@@ -29,11 +28,12 @@ public class SlingshotMovement : Helper
     {
         if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log("NAPSISTA SAATANA");
             Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
             if (targetObject)
             {
                 selected = targetObject.transform.gameObject;
-            }            
+            }
         }
         if (selected && selected.tag == "Player") ballUI.CanLineRender();
         if (Input.GetMouseButtonUp(0) && selected && selected.tag == "Player")

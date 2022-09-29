@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallBounce : Helper
+public class Collisions : Helper
 {
     Vector3 lastVelocity;
     [SerializeField] float bounceForce;
