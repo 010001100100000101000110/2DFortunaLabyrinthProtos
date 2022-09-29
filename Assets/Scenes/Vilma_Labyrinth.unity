@@ -301,6 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnBallLaunched: {fileID: 11400000, guid: cd790b6625af6ca429c3803304c53ee7, type: 2}
+  OnBallStopped: {fileID: 11400000, guid: 1f5a1ebec7cd57c44a311c336776b278, type: 2}
 --- !u!114 &185744747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,6 +493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1142620798}
   - component: {fileID: 1142620799}
+  - component: {fileID: 1142620800}
   m_Layer: 0
   m_Name: EventListener
   m_TagString: Untagged
@@ -542,6 +544,46 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1142620800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142620797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e14d7779099f8742bcd47505890b2b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 1f5a1ebec7cd57c44a311c336776b278, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2313594350017240824}
+        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
+        m_MethodName: CanLaunch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7246713694292354030}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &2313594350017240816
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,6 +597,7 @@ GameObject:
   - component: {fileID: 2313594350017240820}
   - component: {fileID: 2313594350017240823}
   - component: {fileID: 2313594350017240824}
+  - component: {fileID: 2313594350017240825}
   m_Layer: 0
   m_Name: PLAYER-NO-G
   m_TagString: Player
@@ -657,9 +700,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3
   m_LinearDrag: 1
-  m_AngularDrag: 0.05
+  m_AngularDrag: 3
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -678,8 +721,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67e40f903762fc48811cf46d93f6a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  launchForce: 7
-  maxPullDistance: 4
+  launchForce: 9
+  maxPullDistance: 5
+--- !u!114 &2313594350017240825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2313594350017240816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a51f9dbf406c6294f8daf9c8ac1a4799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3897117668099846690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -840,7 +895,7 @@ GameObject:
   - component: {fileID: 3897117668143341540}
   m_Layer: 0
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

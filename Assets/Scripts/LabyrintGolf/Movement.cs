@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : Helper
+public class Movement : Helper_G
 {
     UIHandler_G ballUI;
  
@@ -10,6 +10,8 @@ public class Movement : Helper
     bool canLaunch;
     [SerializeField] float launchForce;
     [SerializeField] float maxPullDistance;
+
+    bool ballOnTheMove;
 
     void Start()
     {
@@ -22,7 +24,12 @@ public class Movement : Helper
     {
         base.Update();
         if (canLaunch) LaunchBallMode();
-    } 
+        if (rigidbody.velocity.magnitude < 0.1)
+        {
+            rigidbody.velocity = new Vector3(0, 0, 0);
+            if (rigidbody.velocity.magnitude == 0) eventMethods.BallStopped();
+        }
+    }
 
     void LaunchBallMode()
     {
@@ -66,18 +73,24 @@ public class Movement : Helper
         Debug.Log("force on " + force);
 
         rigidbody.AddForce(trajectoryDir * force, ForceMode2D.Impulse);
+
         canLaunch = false;
     }
-    public void ActivateLaunching()
+    public void CanLaunch()
     {
         canLaunch = true;
     }
-    public void DeActivateLaunching()
+    public void CantLaunch()
     {
         canLaunch = false;
     }
     public float GetMaxDistance()
     {
         return maxPullDistance;
+    }
+
+    void WhileMoving()
+    {
+        if (rigidbody.velocity.magnitude == 0) canLaunch = true;
     }
 }
