@@ -720,21 +720,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6808269679207828043, guid: 5404c37b6d226964fa652f2e2c2eb673,
-        type: 3}
-      propertyPath: m_DynamicOccludee
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6808269679779410422, guid: 5404c37b6d226964fa652f2e2c2eb673,
-        type: 3}
-      propertyPath: m_DynamicOccludee
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6808269680084562548, guid: 5404c37b6d226964fa652f2e2c2eb673,
-        type: 3}
-      propertyPath: m_DynamicOccludee
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6808269680575823857, guid: 5404c37b6d226964fa652f2e2c2eb673,
         type: 3}
       propertyPath: m_RootOrder
