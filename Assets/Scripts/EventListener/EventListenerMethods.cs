@@ -18,7 +18,6 @@ public class EventListenerMethods : MonoBehaviour
     {
         OnGameOver?.Raise();
     }
-
     public void TryAgain()
     {
         OnTryAgain?.Raise();
