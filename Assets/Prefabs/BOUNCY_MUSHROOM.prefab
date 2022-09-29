@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 2176593758301258971}
   - component: {fileID: 8779812014430310786}
   - component: {fileID: 4781927380847739601}
-  - component: {fileID: 3639524050842630213}
   m_Layer: 0
   m_Name: BOUNCY_MUSHROOM
-  m_TagString: Untagged
+  m_TagString: Bounce
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,16 +101,3 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0056798854, y: 0.40745294}
   m_Size: {x: 1.511365, y: 0.6525069}
   m_Direction: 1
---- !u!114 &3639524050842630213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3070484527294600773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dd20e2ab709a5b4da09ce1192929c02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bounceForce: 40
