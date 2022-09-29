@@ -186,7 +186,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -965,12 +965,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66cf2ed0aad06334aa7b1e55412aa89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnDecidingStartingPlace: {fileID: 11400000, guid: f990e7e5353cb8b408b2e630f77fb0dd,
-    type: 2}
-  OnStartingPlaceDecided: {fileID: 11400000, guid: df2f2c78f1294fc45a49011a9a48ee6b,
-    type: 2}
-  OnResetButtonHit: {fileID: 11400000, guid: f09179297528f634da636da73a4387c7, type: 2}
   OnBallLaunched: {fileID: 11400000, guid: cd790b6625af6ca429c3803304c53ee7, type: 2}
+  OnGameOver: {fileID: 0}
+  OnTryAgain: {fileID: 0}
 --- !u!4 &341831056
 Transform:
   m_ObjectHideFlags: 0
@@ -999,7 +996,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 203481793}
-  maxDistance: 5
 --- !u!120 &341831058
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1132,10 +1128,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 279cd96ba3ae8b34e8d29bd196e4b649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPanel: {fileID: 701851657}
   pickPositionPanel: {fileID: 1980530075}
   launchingModePanel: {fileID: 652384953}
   ballActivePanel: {fileID: 1905136485}
+  gameOverPanel: {fileID: 0}
 --- !u!1 &545595978
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,7 +1284,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 016ece2ca7506c2478458c757c7e607a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selected: {fileID: 0}
   areaPoint1: {fileID: 1554206906}
   areaPoint2: {fileID: 204764079}
 --- !u!114 &545595988
