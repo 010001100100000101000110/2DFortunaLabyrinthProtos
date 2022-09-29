@@ -11,7 +11,7 @@ public class Movement : Helper_G
     [SerializeField] float launchForce;
     [SerializeField] float maxPullDistance;
 
-    bool ballOnTheMove;
+    Vector3 lastPosition;
 
     void Start()
     {
@@ -24,7 +24,7 @@ public class Movement : Helper_G
     {
         base.Update();
         if (canLaunch) LaunchBallMode();
-        if (rigidbody.velocity.magnitude < 0.1)
+        if (rigidbody.velocity.magnitude < 0.5)
         {
             rigidbody.velocity = new Vector3(0, 0, 0);
             if (rigidbody.velocity.magnitude == 0) eventMethods.BallStopped();
@@ -35,12 +35,8 @@ public class Movement : Helper_G
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("NAPSISTA SAATANA");
             Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
-            if (targetObject)
-            {
-                selected = targetObject.transform.gameObject;
-            }
+            if (targetObject) selected = targetObject.transform.gameObject;
         }
         if (selected && selected.tag == "Player") ballUI.CanLineRender();
         if (Input.GetMouseButtonUp(0) && selected && selected.tag == "Player")
@@ -55,25 +51,18 @@ public class Movement : Helper_G
     void LaunchBall()
     {
         rigidbody.bodyType = RigidbodyType2D.Dynamic;
-        rigidbody.constraints = RigidbodyConstraints2D.None;
+        rigidbody.constraints = RigidbodyConstraints2D.None;        
+        rigidbody.freezeRotation = false;        
 
         Vector2 playerPos = transform.position;
-        rigidbody.freezeRotation = false;
-        eventMethods.BallLaunched();
-
         Vector2 trajectoryDir = (playerPos - mousePosition).normalized;
-
         float distance = (Vector2.Distance(playerPos, mousePosition));
         float clampDistance = Mathf.Clamp(distance, 0, maxPullDistance);
-
         float force = clampDistance * launchForce;
 
-        Debug.Log("distance on " + distance);
-        Debug.Log("clampDistance on " + clampDistance);
-        Debug.Log("force on " + force);
-
+        lastPosition = this.transform.position;
         rigidbody.AddForce(trajectoryDir * force, ForceMode2D.Impulse);
-
+        eventMethods.BallLaunched();
         canLaunch = false;
     }
     public void CanLaunch()
@@ -89,8 +78,9 @@ public class Movement : Helper_G
         return maxPullDistance;
     }
 
-    void WhileMoving()
+    public void ResetMovement()
     {
-        if (rigidbody.velocity.magnitude == 0) canLaunch = true;
+        rigidbody.velocity = new Vector3(0, 0, 0);
+        
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Collisions_G : Helper_G
 {
     Vector3 lastVelocity;
+    [SerializeField] float bounce;
     void Update()
     {
         lastVelocity = rigidbody.velocity;
