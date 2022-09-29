@@ -4,10 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 public class StartingPointMover : Helper
 {
-    GameObject selected;    
+    GameObject selectedObject;    
     [SerializeField] Transform areaPoint1;
-    [SerializeField] Transform areaPoint2;
-        
+    [SerializeField] Transform areaPoint2;        
     bool choosingStartPointMode;
     void Start()
     {
@@ -27,20 +26,11 @@ public class StartingPointMover : Helper
         float xPos = Mathf.Clamp(mousePosition.x, areaPoint1.position.x, areaPoint2.position.x);
         if (Input.GetMouseButtonDown(0))
         {
-            Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
-            if (targetObject)
-            {
-                selected = targetObject.transform.gameObject;
-            }            
+            Collider2D target = Physics2D.OverlapPoint(mousePosition);
+            if (target) selectedObject = target.transform.gameObject;         
         }
-        if (selected && selected.tag == "Player")
-        {
-            selected.transform.position = new Vector3(xPos, transform.position.y, transform.position.z);
-        }
-        if (Input.GetMouseButtonUp(0) && selected && selected.tag == "Player")
-        {
-            selected = null;
-        }
+        if (selectedObject && selectedObject.tag == "Player") selectedObject.transform.position = new Vector3(xPos, transform.position.y, transform.position.z);
+        if (Input.GetMouseButtonUp(0) && selectedObject && selectedObject.tag == "Player") selectedObject = null;
     }
    
     public void ResetBallProperties()
