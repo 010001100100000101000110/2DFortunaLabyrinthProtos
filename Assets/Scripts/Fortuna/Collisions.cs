@@ -13,9 +13,12 @@ public class Collisions : Helper
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        float speed = lastVelocity.magnitude;
         Vector3 direction = Vector3.Reflect(lastVelocity.normalized, collision.contacts[0].normal);
 
         if(collision.gameObject.tag == "Bounce") rigidbody.velocity = direction * bounceForce;
+        if (collision.gameObject.tag == "Wall") rigidbody.velocity = direction * (speed/2);
         if (collision.gameObject.tag == "Danger") eventMethods.GameOver();
+
     }
 }
