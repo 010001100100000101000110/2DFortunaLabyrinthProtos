@@ -8,6 +8,7 @@ TagManager:
   - Danger
   - Wall
   - Hole
+  - Start
   layers:
   - Default
   - TransparentFX

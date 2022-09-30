@@ -5,13 +5,8 @@ using UnityEngine;
 public class Collisions_G : Helper_G
 {
     Vector3 lastVelocity;
-    [SerializeField] float bounce;
-    Movement movement;
+    [SerializeField] float bouncePadForce;
 
-    private void Start()
-    {
-        movement = GetComponent<Movement>();
-    }
     void Update()
     {
         lastVelocity = rigidbody.velocity;        
@@ -23,6 +18,7 @@ public class Collisions_G : Helper_G
         Vector3 direction = Vector3.Reflect(lastVelocity.normalized, collision.contacts[0].normal);
 
         if (collision.gameObject.tag == "Wall") rigidbody.velocity = direction * speed ;
+        if (collision.gameObject.tag == "Bounce") rigidbody.velocity = direction * bouncePadForce;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,6 +29,8 @@ public class Collisions_G : Helper_G
             movement.ResetMovement();
             StartCoroutine(HoleAnimation());            
         }
+
+        if (collision.gameObject.tag == "Finish") eventMethods.GameFinished();
     }
 
     IEnumerator HoleAnimation()

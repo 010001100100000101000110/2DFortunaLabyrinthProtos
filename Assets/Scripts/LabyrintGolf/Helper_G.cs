@@ -8,12 +8,14 @@ public class Helper_G : MonoBehaviour
     public GameObject player { get; private set; }
     public Rigidbody2D rigidbody { get; private set; }
     public EventListenerMethods_G eventMethods { get; private set; }
+    public Movement movement { get; private set; }
 
     void Awake()
     {
         player = GameObject.FindWithTag("Player");
         rigidbody = player.GetComponent<Rigidbody2D>();
         eventMethods = FindObjectOfType<EventListenerMethods_G>();
+        movement = player.GetComponent<Movement>();
     }
 
     public void Update()

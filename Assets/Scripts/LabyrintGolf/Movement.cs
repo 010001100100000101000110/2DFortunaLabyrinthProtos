@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Movement : Helper_G
 {
-    UIHandler_G ballUI;
- 
+    UIHandler_G ballUI; 
     GameObject selected;
     bool canLaunch;
     [SerializeField] float launchForce;
     [SerializeField] float maxPullDistance;
-
+    public int launchAmount { get; private set; }
     public Vector3 lastPosition { get; private set; }
 
     void Start()
@@ -44,7 +43,7 @@ public class Movement : Helper_G
             selected = null;
             ballUI.CantLineRender();
             LaunchBall();
-            eventMethods.BallLaunched();
+            //eventMethods.BallLaunched();
         }
     }
 
@@ -80,6 +79,18 @@ public class Movement : Helper_G
 
     public void ResetMovement()
     {
-        rigidbody.velocity = new Vector3(0, 0, 0);       
+        rigidbody.velocity = new Vector3(0, 0, 0);
+        rigidbody.freezeRotation = true;
+        this.transform.rotation = Quaternion.identity;
+        rigidbody.freezeRotation = false;
+    }
+
+    public void AddToLaunchAmount()
+    {
+        launchAmount++;
+    }
+    public void ResetLaunchAmount()
+    {
+        launchAmount = 0;
     }
 }

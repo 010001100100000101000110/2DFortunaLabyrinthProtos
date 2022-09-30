@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-public class UIHandler_G : Helper
+public class UIHandler_G : Helper_G
 {
     LineRenderer line;
-    Movement slingMovement;
-    [SerializeField] Image image;
+    [SerializeField] Image loadForceImage;
+    [SerializeField] TMP_Text strokeCountingText;
 
     float distance;
     bool canRenderLine;
@@ -15,7 +16,7 @@ public class UIHandler_G : Helper
     void Start()
     {
         line = GetComponent<LineRenderer>();
-        slingMovement = FindObjectOfType<Movement>();
+        UpdateStrokeAmount();
     }
 
     void Update()
@@ -50,6 +51,11 @@ public class UIHandler_G : Helper
 
     void UpdateSlider()
     {
-        image.fillAmount = distance / slingMovement.GetMaxDistance();
+        loadForceImage.fillAmount = distance / movement.GetMaxDistance();
+    }
+
+    public void UpdateStrokeAmount()
+    {
+        strokeCountingText.text = "Strokes: " + movement.launchAmount.ToString();
     }
 }
