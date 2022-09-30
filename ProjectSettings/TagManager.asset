@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Hole
   - Start
+  - Friction
   layers:
   - Default
   - TransparentFX

@@ -6,13 +6,19 @@ public class Collisions_G : Helper_G
 {
     Vector3 lastVelocity;
     [SerializeField] float bouncePadForce;
+    float linearDrag;
+    [SerializeField] float frictionDrag;
 
+    private void Start()
+    {
+        linearDrag = rigidbody.drag;
+    }
     void Update()
     {
         lastVelocity = rigidbody.velocity;        
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         float speed = lastVelocity.magnitude;
         Vector3 direction = Vector3.Reflect(lastVelocity.normalized, collision.contacts[0].normal);
@@ -21,7 +27,7 @@ public class Collisions_G : Helper_G
         if (collision.gameObject.tag == "Bounce") rigidbody.velocity = direction * bouncePadForce;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Hole")
         {
@@ -30,7 +36,14 @@ public class Collisions_G : Helper_G
             StartCoroutine(HoleAnimation());            
         }
 
+        if (collision.gameObject.tag == "Friction") rigidbody.drag = frictionDrag;
+
         if (collision.gameObject.tag == "Finish") eventMethods.GameFinished();
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Friction")  rigidbody.drag = linearDrag;
     }
 
     IEnumerator HoleAnimation()
