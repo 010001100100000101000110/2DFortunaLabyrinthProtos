@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 26020
+  controlID: 1528
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 26021
+  controlID: 1529
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 26022
+  controlID: 1530
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -405,8 +405,8 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: -100, y: -25.599976}
-      snapOffsetDelta: {x: 0, y: 0}
+      snapOffset: {x: 0, y: 0}
+      snapOffsetDelta: {x: -100, y: -25.599976}
       snapCorner: 3
       id: Tool Settings
       index: 0
@@ -427,7 +427,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 24.8}
+      snapOffset: {x: 0, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-scene-view-toolbar
@@ -471,7 +471,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 24.8}
+      snapOffset: {x: 0, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-transform-toolbar
@@ -619,9 +619,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -18.47821, y: -4.0538983, z: -0.15043095}
+    m_Target: {x: -0.18481445, y: -0.29291534, z: -0.7556772}
     speed: 2
-    m_Value: {x: -18.47821, y: -4.0538983, z: -0.15043095}
+    m_Value: {x: -0.18481445, y: -0.29291534, z: -0.7556772}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -672,9 +672,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 16.929142
+    m_Target: 18.733564
     speed: 2
-    m_Value: 16.929142
+    m_Value: 18.733564
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -731,9 +731,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: badafdff
-      m_LastClickedID: -140614
-      m_ExpandedIDs: 3edbfdff8ee9fdff1217ffff7c3cffff4254ffff9adfffffe8f4ffffe8f7ffff2afbffffa66e0000f06e0000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 12fbffff2afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -799,22 +799,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts/LabyrintGolf
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Scripts/LabyrintGolf
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\vilma.jalonen\Documents\GitHub\2DFortunaLabyrinthProtos
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 786a0000
-    m_LastClickedID: 27256
-    m_ExpandedIDs: 000000006a6a00006c6a000000ca9a3b
+    scrollPos: {x: 0, y: 58.19995}
+    m_SelectedIDs: ea6c0000
+    m_LastClickedID: 27882
+    m_ExpandedIDs: 00000000986c00009a6c0000c86c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -842,7 +842,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000006a6a00006c6a000000ca9a3b
+    m_ExpandedIDs: 00000000986c00009a6c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
