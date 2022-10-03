@@ -5,7 +5,7 @@ using UnityEngine;
 public class Teleportation : Helper_G
 {
     [SerializeField] GameObject partnerPortal;
-    [SerializeField] float teleportCooldownTime;
+    //[SerializeField] float teleportCooldownTime;
 
     public bool canTeleport;
     bool partnerCanTeleport;
@@ -43,7 +43,7 @@ public class Teleportation : Helper_G
         {
             canTeleport = false;
             partnerCanTeleport = false;
-            eventMethods.BallTeleported();
+            //eventMethods.BallTeleported();
             StartCoroutine(PortalCooldown());
         }
     }
