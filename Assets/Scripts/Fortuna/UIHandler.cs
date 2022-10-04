@@ -8,6 +8,7 @@ public class UIHandler : Helper
 {
     LineRenderer line;
     SlingshotMovement slingMovement;
+    
     [SerializeField] Image image;
     
     float distance;
@@ -18,11 +19,14 @@ public class UIHandler : Helper
     [SerializeField] GameObject ballActivePanel;
     [SerializeField] GameObject gameOverPanel;
 
+    [SerializeField] TMP_Text collectedText;
+
     void Start()
     {
         ResetUIAtStart();
         line = GetComponent<LineRenderer>();
         slingMovement = FindObjectOfType<SlingshotMovement>();
+        UpdateCollectedText();
     }
 
     void Update()
@@ -58,6 +62,11 @@ public class UIHandler : Helper
     void UpdateSlider()
     {
         image.fillAmount = distance / slingMovement.GetMaxDistance();
+    }
+
+    public void UpdateCollectedText()
+    {
+        collectedText.text = "collected drops: " + collecting.CollectedDrops.ToString();
     }
 
     void ResetUIAtStart()

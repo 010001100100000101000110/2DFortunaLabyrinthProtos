@@ -19,6 +19,14 @@ public class Collisions : Helper
         if(collision.gameObject.tag == "Bounce") rigidbody.velocity = direction * bounceForce;
         if (collision.gameObject.tag == "Wall") rigidbody.velocity = direction * (speed/2);
         if (collision.gameObject.tag == "Danger") eventMethods.GameOver();
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Collect")
+        {
+            collision.gameObject.SetActive(false);
+            eventMethods.Collected();
+        }
     }
 }

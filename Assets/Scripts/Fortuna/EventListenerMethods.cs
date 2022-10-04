@@ -8,6 +8,7 @@ public class EventListenerMethods : MonoBehaviour
     [SerializeField] GameEvent OnBallLaunched;
     [SerializeField] GameEvent OnGameOver;
     [SerializeField] GameEvent OnTryAgain;
+    [SerializeField] GameEvent OnCollected;
 
     
     public void BallLaunched()
@@ -21,5 +22,9 @@ public class EventListenerMethods : MonoBehaviour
     public void TryAgain()
     {
         OnTryAgain?.Raise();
+    }
+    public void Collected()
+    {
+        OnCollected?.Raise();
     }
 }
