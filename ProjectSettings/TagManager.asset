@@ -10,6 +10,7 @@ TagManager:
   - Hole
   - Start
   - Friction
+  - Collect
   layers:
   - Default
   - TransparentFX

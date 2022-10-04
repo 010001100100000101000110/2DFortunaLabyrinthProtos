@@ -772,6 +772,7 @@ GameObject:
   - component: {fileID: 341831055}
   - component: {fileID: 341831057}
   - component: {fileID: 341831059}
+  - component: {fileID: 341831060}
   - component: {fileID: 341831058}
   m_Layer: 0
   m_Name: ScriptHolder + LineRenderer
@@ -795,6 +796,7 @@ MonoBehaviour:
   OnBallLaunched: {fileID: 11400000, guid: cd790b6625af6ca429c3803304c53ee7, type: 2}
   OnGameOver: {fileID: 11400000, guid: d596774600fdb1e409e2edb2583d8481, type: 2}
   OnTryAgain: {fileID: 11400000, guid: cac366fda85bf9c44bff954aadbf034a, type: 2}
+  OnCollected: {fileID: 11400000, guid: a30e9484ab012614c943f122cd7f5d6f, type: 2}
 --- !u!4 &341831056
 Transform:
   m_ObjectHideFlags: 0
@@ -827,7 +829,7 @@ MonoBehaviour:
   launchingModePanel: {fileID: 652384953}
   ballActivePanel: {fileID: 1905136485}
   gameOverPanel: {fileID: 954786834}
-  collectedText: {fileID: 0}
+  collectedText: {fileID: 320450749}
 --- !u!120 &341831058
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -948,6 +950,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d15ee7aaac722342bb14595f719dcaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &341831060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341831053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a848639194c38d40bd347269270cf0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collected: []
 --- !u!1 &414758581
 GameObject:
   m_ObjectHideFlags: 0
@@ -1328,6 +1343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a848639194c38d40bd347269270cf0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collected: []
 --- !u!1 &612391956
 GameObject:
   m_ObjectHideFlags: 0
@@ -3722,6 +3738,7 @@ GameObject:
   - component: {fileID: 1572447356}
   - component: {fileID: 1572447359}
   - component: {fileID: 1572447358}
+  - component: {fileID: 1572447360}
   m_Layer: 0
   m_Name: EventListener
   m_TagString: Untagged
@@ -3848,6 +3865,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 341831060}
+        m_TargetAssemblyTypeName: Collecting, Assembly-CSharp
+        m_MethodName: ResetCollectedAmount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 341831060}
+        m_TargetAssemblyTypeName: Collecting, Assembly-CSharp
+        m_MethodName: ResetCollectedActivity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1572447359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3887,6 +3928,46 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &1572447360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572447355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e14d7779099f8742bcd47505890b2b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: a30e9484ab012614c943f122cd7f5d6f, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 341831060}
+        m_TargetAssemblyTypeName: Collecting, Assembly-CSharp
+        m_MethodName: AddToCollected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 341831057}
+        m_TargetAssemblyTypeName: UIHandler, Assembly-CSharp
+        m_MethodName: UpdateCollectedText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1639156526
 GameObject:
@@ -4024,6 +4105,42 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 341831060}
+        m_TargetAssemblyTypeName: Collecting, Assembly-CSharp
+        m_MethodName: ResetCollectedActivity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 341831060}
+        m_TargetAssemblyTypeName: Collecting, Assembly-CSharp
+        m_MethodName: ResetCollectedAmount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 341831057}
+        m_TargetAssemblyTypeName: UIHandler, Assembly-CSharp
+        m_MethodName: UpdateCollectedText
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4681,7 +4798,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1905136486
 RectTransform:
   m_ObjectHideFlags: 0
