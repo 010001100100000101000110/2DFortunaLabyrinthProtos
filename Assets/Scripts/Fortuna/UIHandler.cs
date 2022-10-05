@@ -71,8 +71,8 @@ public class UIHandler : Helper
 
     void ResetUIAtStart()
     {
-        pickPositionPanel.SetActive(true);
-        launchingModePanel.SetActive(false);
+       // pickPositionPanel.SetActive(true);
+        launchingModePanel.SetActive(true);
         ballActivePanel.SetActive(false);
         gameOverPanel.SetActive(false);
     }

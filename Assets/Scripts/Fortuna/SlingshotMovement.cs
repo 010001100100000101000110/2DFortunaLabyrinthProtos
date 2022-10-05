@@ -12,10 +12,13 @@ public class SlingshotMovement : Helper
     bool canLaunch;
     [SerializeField] float launchForce;
     [SerializeField] float maxPullDistance;
+    Vector2 playerStartingPoint;
     
     void Start()
     {
         ballUI = FindObjectOfType<UIHandler>();
+        canLaunch = true;
+        playerStartingPoint = this.transform.position;
     }
 
 
@@ -79,5 +82,14 @@ public class SlingshotMovement : Helper
     public float GetMaxDistance()
     {
         return maxPullDistance;
+    }
+
+    public void ResetBallProperties()
+    {
+        this.transform.position = playerStartingPoint;
+        rigidbody.velocity = Vector2.zero;
+        rigidbody.isKinematic = true;
+        this.transform.rotation = Quaternion.identity;
+        rigidbody.freezeRotation = true;
     }
 }
