@@ -8,6 +8,7 @@ public class Collisions_G : Helper_G
     [SerializeField] float bouncePadForce;
     float linearDrag;
     [SerializeField] float frictionDrag;
+    
 
     private void Start()
     {
@@ -24,7 +25,11 @@ public class Collisions_G : Helper_G
         Vector3 direction = Vector3.Reflect(lastVelocity.normalized, collision.contacts[0].normal);
 
         if (collision.gameObject.tag == "Wall") rigidbody.velocity = direction * speed ;
-        if (collision.gameObject.tag == "Bounce") rigidbody.velocity = direction * bouncePadForce;
+        if (collision.gameObject.tag == "Bounce")
+        {
+            rigidbody.velocity = direction * speed * bouncePadForce;
+            audioHandler.PlayBoing();
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -33,17 +38,44 @@ public class Collisions_G : Helper_G
         {
             transform.position = collision.gameObject.transform.position;
             movement.ResetMovement();
-            StartCoroutine(HoleAnimation());            
+            StartCoroutine(HoleAnimation());
+            audioHandler.PlayFallIntoHole();
         }
 
         if (collision.gameObject.tag == "Friction") rigidbody.drag = frictionDrag;
 
         if (collision.gameObject.tag == "Finish") eventMethods.GameFinished();
+        if (collision.gameObject.tag == "Teleport") teleports.Add(collision.gameObject);
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Friction")  rigidbody.drag = linearDrag;
+    }
+
+    public void ActivateTeleports()
+    {
+        for (int i = 0; i < teleports.Count; i++)
+        {
+            teleports[i].GetComponent<Teleportation>().canTeleport = true;
+            Debug.Log(teleports[i]);
+            teleports[i].GetComponent<Collider2D>().enabled = true;
+            StartCoroutine(PortalActivate(teleports[i].GetComponent<SpriteRenderer>()));
+        }
+        teleports.Clear();
+    }
+    IEnumerator PortalActivate(SpriteRenderer renderer)
+    {
+        float elapsedTime = 0;
+        float totalTime = 1;
+
+        while (elapsedTime < totalTime)
+        {
+            elapsedTime += Time.deltaTime;
+            renderer.color = Color32.Lerp(Color.black, Color.white, elapsedTime / totalTime);
+            //partnerRenderer.color = Color32.Lerp(Color.black, Color.white, elapsedTime / totalTime);
+            yield return null;
+        }
     }
 
     IEnumerator HoleAnimation()

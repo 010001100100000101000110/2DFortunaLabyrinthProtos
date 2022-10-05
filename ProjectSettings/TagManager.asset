@@ -11,6 +11,7 @@ TagManager:
   - Start
   - Friction
   - Collect
+  - Teleport
   layers:
   - Default
   - TransparentFX

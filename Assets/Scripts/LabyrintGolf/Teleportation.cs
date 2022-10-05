@@ -33,7 +33,10 @@ public class Teleportation : Helper_G
         {
             collision.gameObject.transform.position = partnerPortal.transform.position;
             collider.enabled = false;
-            partnerCollider.enabled = false;   
+            partnerCollider.enabled = false;
+            teleports.Add(this.gameObject);
+            teleports.Add(partnerPortal);
+            audioHandler.PlayTeleport();
         }
     }
 
@@ -43,8 +46,10 @@ public class Teleportation : Helper_G
         {
             canTeleport = false;
             partnerCanTeleport = false;
+            renderer.color = Color.black;
+            partnerRenderer.color = Color.black;
             //eventMethods.BallTeleported();
-            StartCoroutine(PortalCooldown());
+            //StartCoroutine(PortalCooldown());
         }
     }
 
@@ -65,5 +70,5 @@ public class Teleportation : Helper_G
         partnerCollider.enabled = true;
         collider.enabled = true;
         
-    }
+    } 
 }

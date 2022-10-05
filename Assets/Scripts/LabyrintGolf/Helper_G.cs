@@ -9,13 +9,16 @@ public class Helper_G : MonoBehaviour
     public Rigidbody2D rigidbody { get; private set; }
     public EventListenerMethods_G eventMethods { get; private set; }
     public Movement movement { get; private set; }
+    public AudioHandler_G audioHandler { get; private set; }
 
+    public List<GameObject> teleports = new List<GameObject>(2);
     void Awake()
     {
         player = GameObject.FindWithTag("Player");
         rigidbody = player.GetComponent<Rigidbody2D>();
         eventMethods = FindObjectOfType<EventListenerMethods_G>();
         movement = player.GetComponent<Movement>();
+        audioHandler = FindObjectOfType<AudioHandler_G>();
     }
 
     public void Update()

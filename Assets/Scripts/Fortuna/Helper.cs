@@ -9,13 +9,13 @@ public class Helper : MonoBehaviour
     public Rigidbody2D rigidbody { get; private set; }
     public EventListenerMethods eventMethods { get; private set; }
     public Collecting collecting { get; private set; }
-
+    
     void Awake()
     {
         player = GameObject.FindWithTag("Player");
         rigidbody = player.GetComponent<Rigidbody2D>();
         eventMethods = FindObjectOfType<EventListenerMethods>();
-        collecting = FindObjectOfType<Collecting>();
+        collecting = FindObjectOfType<Collecting>();        
     }
     
     public void Update()

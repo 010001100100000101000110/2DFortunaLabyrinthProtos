@@ -11,11 +11,13 @@ public class Movement : Helper_G
     [SerializeField] float maxPullDistance;
     public int launchAmount { get; private set; }
     public Vector3 lastPosition { get; private set; }
+    float currentDrag;
 
     void Start()
     {
         ballUI = FindObjectOfType<UIHandler_G>();
         canLaunch = true;
+        currentDrag = rigidbody.drag;
     }
 
 
@@ -23,11 +25,7 @@ public class Movement : Helper_G
     {
         base.Update();
         if (canLaunch) LaunchBallMode();
-        if (rigidbody.velocity.magnitude < 0.5)
-        {
-            rigidbody.velocity = new Vector3(0, 0, 0);
-            if (rigidbody.velocity.magnitude == 0) eventMethods.BallStopped();
-        }
+        if (!canLaunch) StopBallVelocity();        
     }
 
     void LaunchBallMode()
@@ -43,7 +41,6 @@ public class Movement : Helper_G
             selected = null;
             ballUI.CantLineRender();
             LaunchBall();
-            //eventMethods.BallLaunched();
         }
     }
 
@@ -84,6 +81,15 @@ public class Movement : Helper_G
         this.transform.rotation = Quaternion.identity;
         rigidbody.freezeRotation = false;
     }
+    void StopBallVelocity()
+    {
+        if (rigidbody.velocity.magnitude < 0.7 && rigidbody.velocity.magnitude > 0) rigidbody.drag = 50;
+        if (rigidbody.velocity.magnitude == 0)
+        {
+            eventMethods.BallStopped();
+            rigidbody.drag = currentDrag;
+        }
+    }
 
     public void AddToLaunchAmount()
     {
@@ -93,4 +99,5 @@ public class Movement : Helper_G
     {
         launchAmount = 0;
     }
+
 }
