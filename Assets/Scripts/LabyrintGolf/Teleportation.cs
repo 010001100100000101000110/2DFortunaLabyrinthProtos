@@ -48,23 +48,4 @@ public class Teleportation : Helper_G
             partnerRenderer.color = Color.black;
         }
     }
-
-    //IEnumerator PortalCooldown()
-    //{
-    //    float elapsedTime = 0;
-    //    float totalTime = 4;
-
-    //    while (elapsedTime < totalTime)
-    //    {
-    //        elapsedTime += Time.deltaTime;
-    //        renderer.color = Color32.Lerp(Color.black, Color.white, elapsedTime / totalTime);
-    //        partnerRenderer.color = Color32.Lerp(Color.black, Color.white, elapsedTime / totalTime);
-    //        yield return null;
-    //    }
-    //    canTeleport = true;
-    //    partnerCanTeleport = true;
-    //    partnerCollider.enabled = true;
-    //    collider.enabled = true;
-        
-    //} 
 }

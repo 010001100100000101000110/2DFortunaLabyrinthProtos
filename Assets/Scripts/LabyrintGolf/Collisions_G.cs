@@ -67,19 +67,6 @@ public class Collisions_G : Helper_G
         }
         teleports.Clear();
     }
-    //IEnumerator PortalActivate(SpriteRenderer renderer)
-    //{
-    //    float elapsedTime = 0;
-    //    float totalTime = 1;
-
-    //    while (elapsedTime < totalTime)
-    //    {
-    //        elapsedTime += Time.deltaTime;
-    //        renderer.color = Color32.Lerp(Color.black, Color.white, elapsedTime / totalTime);
-    //        //partnerRenderer.color = Color32.Lerp(Color.black, Color.white, elapsedTime / totalTime);
-    //        yield return null;
-    //    }
-    //}
 
     IEnumerator HoleAnimation()
     {

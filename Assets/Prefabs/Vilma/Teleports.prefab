@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 9194105318475025942}
   - component: {fileID: 5948994818225279909}
   - component: {fileID: 3804444011606781368}
+  - component: {fileID: 2305309633427468760}
   m_Layer: 0
   m_Name: PortalOrange
-  m_TagString: Untagged
+  m_TagString: Teleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,6 +117,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   partnerPortal: {fileID: 558283514234127242}
   canTeleport: 0
+--- !u!114 &2305309633427468760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523278689443730129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb3df2b065284af43bf847125c6b86f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destinationCameraPoint: {fileID: 0}
 --- !u!1 &558283514234127242
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,9 +142,10 @@ GameObject:
   - component: {fileID: 7545881373721859380}
   - component: {fileID: 5048604969597872810}
   - component: {fileID: 5219987677870867121}
+  - component: {fileID: 4110163437828885237}
   m_Layer: 0
   m_Name: PortalBlue
-  m_TagString: Untagged
+  m_TagString: Teleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -232,6 +247,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   partnerPortal: {fileID: 523278689443730129}
   canTeleport: 0
+--- !u!114 &4110163437828885237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558283514234127242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb3df2b065284af43bf847125c6b86f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destinationCameraPoint: {fileID: 0}
 --- !u!1 &5134763795809319745
 GameObject:
   m_ObjectHideFlags: 0
