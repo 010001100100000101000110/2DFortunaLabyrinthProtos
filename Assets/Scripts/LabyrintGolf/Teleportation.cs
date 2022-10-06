@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Teleportation : Helper_G
 {
-    [SerializeField] GameObject partnerPortal;
+    public GameObject partnerPortal;
     //[SerializeField] float teleportCooldownTime;
 
     public bool canTeleport;
@@ -34,8 +34,6 @@ public class Teleportation : Helper_G
             collision.gameObject.transform.position = partnerPortal.transform.position;
             collider.enabled = false;
             partnerCollider.enabled = false;
-            teleports.Add(this.gameObject);
-            teleports.Add(partnerPortal);
             audioHandler.PlayTeleport();
         }
     }
@@ -48,27 +46,25 @@ public class Teleportation : Helper_G
             partnerCanTeleport = false;
             renderer.color = Color.black;
             partnerRenderer.color = Color.black;
-            //eventMethods.BallTeleported();
-            //StartCoroutine(PortalCooldown());
         }
     }
 
-    IEnumerator PortalCooldown()
-    {
-        float elapsedTime = 0;
-        float totalTime = 4;
+    //IEnumerator PortalCooldown()
+    //{
+    //    float elapsedTime = 0;
+    //    float totalTime = 4;
 
-        while (elapsedTime < totalTime)
-        {
-            elapsedTime += Time.deltaTime;
-            renderer.color = Color32.Lerp(Color.black, Color.white, elapsedTime / totalTime);
-            partnerRenderer.color = Color32.Lerp(Color.black, Color.white, elapsedTime / totalTime);
-            yield return null;
-        }
-        canTeleport = true;
-        partnerCanTeleport = true;
-        partnerCollider.enabled = true;
-        collider.enabled = true;
+    //    while (elapsedTime < totalTime)
+    //    {
+    //        elapsedTime += Time.deltaTime;
+    //        renderer.color = Color32.Lerp(Color.black, Color.white, elapsedTime / totalTime);
+    //        partnerRenderer.color = Color32.Lerp(Color.black, Color.white, elapsedTime / totalTime);
+    //        yield return null;
+    //    }
+    //    canTeleport = true;
+    //    partnerCanTeleport = true;
+    //    partnerCollider.enabled = true;
+    //    collider.enabled = true;
         
-    } 
+    //} 
 }

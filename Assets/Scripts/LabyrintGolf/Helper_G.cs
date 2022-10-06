@@ -10,8 +10,7 @@ public class Helper_G : MonoBehaviour
     public EventListenerMethods_G eventMethods { get; private set; }
     public Movement movement { get; private set; }
     public AudioHandler_G audioHandler { get; private set; }
-
-    public List<GameObject> teleports = new List<GameObject>(2);
+    
     void Awake()
     {
         player = GameObject.FindWithTag("Player");

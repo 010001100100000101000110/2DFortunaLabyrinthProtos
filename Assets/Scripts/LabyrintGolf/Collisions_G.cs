@@ -8,7 +8,7 @@ public class Collisions_G : Helper_G
     [SerializeField] float bouncePadForce;
     float linearDrag;
     [SerializeField] float frictionDrag;
-    
+    [SerializeField] List<GameObject> teleports = new List<GameObject>(2);
 
     private void Start()
     {
@@ -45,7 +45,11 @@ public class Collisions_G : Helper_G
         if (collision.gameObject.tag == "Friction") rigidbody.drag = frictionDrag;
 
         if (collision.gameObject.tag == "Finish") eventMethods.GameFinished();
-        if (collision.gameObject.tag == "Teleport") teleports.Add(collision.gameObject);
+        if (collision.gameObject.tag == "Teleport")
+        {
+            teleports.Add(collision.gameObject);
+            teleports.Add(collision.gameObject.GetComponent<Teleportation>().partnerPortal);
+        }
     }
 
     void OnTriggerExit2D(Collider2D collision)
@@ -58,25 +62,24 @@ public class Collisions_G : Helper_G
         for (int i = 0; i < teleports.Count; i++)
         {
             teleports[i].GetComponent<Teleportation>().canTeleport = true;
-            Debug.Log(teleports[i]);
             teleports[i].GetComponent<Collider2D>().enabled = true;
-            StartCoroutine(PortalActivate(teleports[i].GetComponent<SpriteRenderer>()));
+            teleports[i].GetComponent<SpriteRenderer>().color = Color.white;
         }
         teleports.Clear();
     }
-    IEnumerator PortalActivate(SpriteRenderer renderer)
-    {
-        float elapsedTime = 0;
-        float totalTime = 1;
+    //IEnumerator PortalActivate(SpriteRenderer renderer)
+    //{
+    //    float elapsedTime = 0;
+    //    float totalTime = 1;
 
-        while (elapsedTime < totalTime)
-        {
-            elapsedTime += Time.deltaTime;
-            renderer.color = Color32.Lerp(Color.black, Color.white, elapsedTime / totalTime);
-            //partnerRenderer.color = Color32.Lerp(Color.black, Color.white, elapsedTime / totalTime);
-            yield return null;
-        }
-    }
+    //    while (elapsedTime < totalTime)
+    //    {
+    //        elapsedTime += Time.deltaTime;
+    //        renderer.color = Color32.Lerp(Color.black, Color.white, elapsedTime / totalTime);
+    //        //partnerRenderer.color = Color32.Lerp(Color.black, Color.white, elapsedTime / totalTime);
+    //        yield return null;
+    //    }
+    //}
 
     IEnumerator HoleAnimation()
     {
