@@ -158,7 +158,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1108952500924601937}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.609059, y: 0.8882309, z: 10.904416}
+  m_LocalPosition: {x: -7.609059, y: 0.8882309, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1696,7 +1696,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3420558277788265707}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.05094099, y: -17.26823, z: -10.904416}
+  m_LocalPosition: {x: -0.05094099, y: -17.26823, z: 0}
   m_LocalScale: {x: 1.4154488, y: 1.4154488, z: 1.4154488}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1820,6 +1820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bouncePadForce: 10
   frictionDrag: 5
+  teleports: []
 --- !u!1 &4140670302958549686
 GameObject:
   m_ObjectHideFlags: 0
