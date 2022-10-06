@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraMover_G : MonoBehaviour
-{
-    [SerializeField] Transform destinationCameraPoint;
+{    
     GameObject mainCamera;
 
     private void Start()
@@ -13,9 +12,6 @@ public class CameraMover_G : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (destinationCameraPoint != null)
-        {
-            if (collision.gameObject.tag == "Player") mainCamera.transform.position = destinationCameraPoint.position;
-        }        
+        if (collision.gameObject.tag == "Wall") mainCamera.transform.position = collision.gameObject.transform.position;      
     }
 }
