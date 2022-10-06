@@ -15,6 +15,8 @@ public class Teleportation : Helper_G
 
     Collider2D collider;
     Collider2D partnerCollider;
+
+    Color32 originalColor;
     void Start()
     {
         renderer = GetComponent<SpriteRenderer>();
@@ -23,29 +25,27 @@ public class Teleportation : Helper_G
         collider = GetComponent<Collider2D>();
         partnerCollider = partnerPortal.GetComponent<Collider2D>();
 
-        partnerCanTeleport = partnerPortal.GetComponent<Teleportation>().canTeleport;
+
         canTeleport = true;
+        originalColor = renderer.color;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (canTeleport && collision.gameObject.tag == "Player")
         {
-            collision.gameObject.transform.position = partnerPortal.transform.position;
-            collider.enabled = false;
-            partnerCollider.enabled = false;
-            audioHandler.PlayTeleport();
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            canTeleport = false;
-            partnerCanTeleport = false;
             renderer.color = Color.black;
             partnerRenderer.color = Color.black;
+            canTeleport = false;
+            partnerPortal.GetComponent<Teleportation>().canTeleport = false;
+            audioHandler.PlayTeleport();
+
+            collision.gameObject.transform.position = partnerPortal.transform.position;
         }
+    }
+    public void ReturnOriginalColor()
+    {
+        renderer.color = originalColor;
     }
 }

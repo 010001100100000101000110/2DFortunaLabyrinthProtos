@@ -10,7 +10,6 @@ public class UIHandler_G : Helper_G
     [SerializeField] Image loadForceImage;
     [SerializeField] TMP_Text strokeCountingText;
 
-    float distance;
     bool canRenderLine;
 
     void Start()
@@ -21,9 +20,6 @@ public class UIHandler_G : Helper_G
 
     void Update()
     {
-        base.Update();
-        distance = Vector3.Distance(player.transform.position, mousePosition);
-
         if (canRenderLine)
         {
             LineRendererTing();
@@ -34,7 +30,7 @@ public class UIHandler_G : Helper_G
     void LineRendererTing()
     {
         line.SetPosition(0, player.transform.position);
-        line.SetPosition(1, mousePosition);
+        line.SetPosition(1, GetMousePosition());
     }
 
     public void CanLineRender()
@@ -51,11 +47,11 @@ public class UIHandler_G : Helper_G
 
     void UpdateSlider()
     {
-        loadForceImage.fillAmount = distance / movement.GetMaxDistance();
+        loadForceImage.fillAmount = GetDistance() / movement.GetMaxDistance();
     }
 
     public void UpdateStrokeAmount()
     {
-        strokeCountingText.text = "Strokes: " + movement.launchAmount.ToString();
+        strokeCountingText.text = "Launches: " + movement.launchAmount.ToString();
     }
 }

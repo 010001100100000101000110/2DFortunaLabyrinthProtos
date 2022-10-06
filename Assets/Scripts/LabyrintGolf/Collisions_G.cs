@@ -27,7 +27,7 @@ public class Collisions_G : Helper_G
         if (collision.gameObject.tag == "Wall") rigidbody.velocity = direction * speed ;
         if (collision.gameObject.tag == "Bounce")
         {
-            rigidbody.velocity = direction * speed * bouncePadForce;
+            rigidbody.velocity = direction * (speed + bouncePadForce);
             audioHandler.PlayBoing();
         }
     }
@@ -59,13 +59,15 @@ public class Collisions_G : Helper_G
 
     public void ActivateTeleports()
     {
-        for (int i = 0; i < teleports.Count; i++)
+        if (teleports.Count != 0)
         {
-            teleports[i].GetComponent<Teleportation>().canTeleport = true;
-            teleports[i].GetComponent<Collider2D>().enabled = true;
-            teleports[i].GetComponent<SpriteRenderer>().color = Color.white;
-        }
-        teleports.Clear();
+            for (int i = 0; i < teleports.Count; i++)
+            {
+                teleports[i].GetComponent<Teleportation>().canTeleport = true;
+                teleports[i].GetComponent<Teleportation>().ReturnOriginalColor();
+            }
+            teleports.Clear();
+        }        
     }
 
     IEnumerator HoleAnimation()

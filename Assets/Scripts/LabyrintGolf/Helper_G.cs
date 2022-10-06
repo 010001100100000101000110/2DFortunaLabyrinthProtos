@@ -10,7 +10,7 @@ public class Helper_G : MonoBehaviour
     public EventListenerMethods_G eventMethods { get; private set; }
     public Movement movement { get; private set; }
     public AudioHandler_G audioHandler { get; private set; }
-    
+    public float distance { get; private set; }
     void Awake()
     {
         player = GameObject.FindWithTag("Player");
@@ -20,8 +20,14 @@ public class Helper_G : MonoBehaviour
         audioHandler = FindObjectOfType<AudioHandler_G>();
     }
 
-    public void Update()
+    public float GetDistance()
+    {
+        distance = Vector3.Distance(player.transform.position, GetMousePosition());
+        return distance;
+    }
+    public Vector2 GetMousePosition()
     {
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        return mousePosition;
     }
 }

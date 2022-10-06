@@ -23,7 +23,6 @@ public class Movement : Helper_G
 
     void Update()
     {
-        base.Update();
         if (canLaunch) LaunchBallMode();
         if (!canLaunch) StopBallVelocity();        
     }
@@ -32,7 +31,7 @@ public class Movement : Helper_G
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
+            Collider2D targetObject = Physics2D.OverlapPoint(GetMousePosition());
             if (targetObject) selected = targetObject.transform.gameObject;
         }
         if (selected && selected.tag == "Player") ballUI.CanLineRender();
@@ -51,9 +50,8 @@ public class Movement : Helper_G
         rigidbody.freezeRotation = false;        
 
         Vector2 playerPos = transform.position;
-        Vector2 trajectoryDir = (playerPos - mousePosition).normalized;
-        float distance = (Vector2.Distance(playerPos, mousePosition));
-        float clampDistance = Mathf.Clamp(distance, 0, maxPullDistance);
+        Vector2 trajectoryDir = (playerPos - GetMousePosition()).normalized;
+        float clampDistance = Mathf.Clamp(GetDistance(), 0, maxPullDistance);
         float force = clampDistance * launchForce;
 
         lastPosition = this.transform.position;
