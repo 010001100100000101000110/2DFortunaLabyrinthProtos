@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3804444011606781368}
   - component: {fileID: 2305309633427468760}
   m_Layer: 0
-  m_Name: PortalOrange
+  m_Name: Portal2
   m_TagString: Teleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: 7d617d699fb31664db2caa3c3268ca3b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 86cbddcee2b0de747867eefebd3c6fe7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 5219987677870867121}
   - component: {fileID: 4110163437828885237}
   m_Layer: 0
-  m_Name: PortalBlue
+  m_Name: Portal1
   m_TagString: Teleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,7 +206,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: 14a5618e29deb1544b353cad077eefb7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 86cbddcee2b0de747867eefebd3c6fe7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

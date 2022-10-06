@@ -13,6 +13,9 @@ public class CameraMover_G : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player") mainCamera.transform.position = destinationCameraPoint.position;
+        if (destinationCameraPoint != null)
+        {
+            if (collision.gameObject.tag == "Player") mainCamera.transform.position = destinationCameraPoint.position;
+        }        
     }
 }
