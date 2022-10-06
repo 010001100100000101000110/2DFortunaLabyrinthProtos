@@ -35,14 +35,19 @@ public class Teleportation : Helper_G
     {
         if (canTeleport && collision.gameObject.tag == "Player")
         {
-            renderer.color = Color.black;
-            partnerRenderer.color = Color.black;
             canTeleport = false;
             partnerPortal.GetComponent<Teleportation>().canTeleport = false;
+            renderer.color = Color.black;
+            partnerRenderer.color = Color.black;
+            collider.enabled = false;
+            partnerCollider.enabled = false;            
             audioHandler.PlayTeleport();
-
             collision.gameObject.transform.position = partnerPortal.transform.position;
         }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        
     }
     public void ReturnOriginalColor()
     {

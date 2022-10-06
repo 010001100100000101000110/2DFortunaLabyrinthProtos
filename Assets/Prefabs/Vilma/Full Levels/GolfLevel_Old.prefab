@@ -5960,7 +5960,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4462158061979765492}
   m_Layer: 0
-  m_Name: Level_Old
+  m_Name: GolfLevel_Old
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

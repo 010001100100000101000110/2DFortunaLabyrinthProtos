@@ -65,6 +65,7 @@ public class Collisions_G : Helper_G
             {
                 teleports[i].GetComponent<Teleportation>().canTeleport = true;
                 teleports[i].GetComponent<Teleportation>().ReturnOriginalColor();
+                teleports[i].GetComponent<Collider2D>().enabled = true;
             }
             teleports.Clear();
         }        
