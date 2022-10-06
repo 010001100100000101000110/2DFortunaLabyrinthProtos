@@ -29,13 +29,8 @@ public class UIHandler_G : Helper_G
 
     void LineRendererTing()
     {
-        float dist = distance;
-        if (dist > 5) return;
-        else
-        {
-            line.SetPosition(0, player.transform.position);
-            line.SetPosition(1, GetMousePosition());
-        }        
+        line.SetPosition(0, player.transform.position);
+        line.SetPosition(1, GetMousePosition());
     }
 
     public void CanLineRender()
