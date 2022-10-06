@@ -19,8 +19,9 @@ public class Collisions : Helper
         if (collision.gameObject.tag == "Bounce")
         {
             rigidbody.velocity = direction * bounceForce;
+            audioManager.PlayBoing();
         }
-        if (collision.gameObject.tag == "Wall") rigidbody.velocity = direction * (speed/2);
+        if (collision.gameObject.tag == "Wall") rigidbody.velocity = direction * speed;
         if (collision.gameObject.tag == "Danger") eventMethods.GameOver();
     }
 

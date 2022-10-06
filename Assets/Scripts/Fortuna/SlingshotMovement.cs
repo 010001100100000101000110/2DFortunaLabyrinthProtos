@@ -19,12 +19,12 @@ public class SlingshotMovement : Helper
         ballUI = FindObjectOfType<UIHandler>();
         canLaunch = true;
         playerStartingPoint = this.transform.position;
+        rigidbody.isKinematic = true;
     }
 
 
     void Update()
     {
-        base.Update();
         if (canLaunch) LaunchBallMode();
     } 
 
@@ -32,7 +32,7 @@ public class SlingshotMovement : Helper
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
+            Collider2D targetObject = Physics2D.OverlapPoint(GetMousePosition());
             if (targetObject)
             {
                 selected = targetObject.transform.gameObject;
@@ -52,19 +52,19 @@ public class SlingshotMovement : Helper
     {
         rigidbody.bodyType = RigidbodyType2D.Dynamic;
         rigidbody.constraints = RigidbodyConstraints2D.None;
+        
 
         Vector2 playerPos = transform.position;
         rigidbody.freezeRotation = false;
         eventMethods.BallLaunched();
 
-        Vector2 trajectoryDir = (playerPos - mousePosition).normalized;
+        Vector2 trajectoryDir = (playerPos - GetMousePosition()).normalized;
 
-        float distance = (Vector2.Distance(playerPos, mousePosition));
-        float clampDistance = Mathf.Clamp(distance, 0, maxPullDistance);
+        float clampDistance = Mathf.Clamp(GetDistance(), 0, maxPullDistance);
 
         float force = clampDistance * launchForce;
 
-        Debug.Log("distance on " + distance);
+        Debug.Log("distance on " + GetDistance());
         Debug.Log("clampDistance on " + clampDistance);
         Debug.Log("force on " + force);
 

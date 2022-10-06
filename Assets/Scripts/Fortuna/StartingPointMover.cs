@@ -16,17 +16,16 @@ public class StartingPointMover : Helper
 
     void Update()
     {
-        base.Update();
         if (choosingStartPointMode) MoveBallWithMouse();       
     }    
 
     void MoveBallWithMouse()
     {
         this.rigidbody.constraints = RigidbodyConstraints2D.FreezePositionY;     
-        float xPos = Mathf.Clamp(mousePosition.x, areaPoint1.position.x, areaPoint2.position.x);
+        float xPos = Mathf.Clamp(GetMousePosition().x, areaPoint1.position.x, areaPoint2.position.x);
         if (Input.GetMouseButtonDown(0))
         {
-            Collider2D target = Physics2D.OverlapPoint(mousePosition);
+            Collider2D target = Physics2D.OverlapPoint(GetMousePosition());
             if (target) selectedObject = target.transform.gameObject;         
         }
         if (selectedObject && selectedObject.tag == "Player") selectedObject.transform.position = new Vector3(xPos, transform.position.y, transform.position.z);

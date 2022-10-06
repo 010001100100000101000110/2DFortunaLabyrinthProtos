@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Helper : MonoBehaviour
 {
-    public Vector2 mousePosition { get; private set; }
+    Vector2 mousePosition;
+    float distance;
     public GameObject player { get; private set; }
     public Rigidbody2D rigidbody { get; private set; }
     public EventListenerMethods eventMethods { get; private set; }
@@ -18,10 +19,15 @@ public class Helper : MonoBehaviour
         eventMethods = FindObjectOfType<EventListenerMethods>();
         collecting = FindObjectOfType<Collecting>();
         audioManager = FindObjectOfType<AudioManager>();
-    }
-    
-    public void Update()
-    {        
+    }    
+    public Vector2 GetMousePosition()
+    {
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        return mousePosition;
+    }
+    public float GetDistance()
+    {
+        distance = Vector3.Distance(player.transform.position, GetMousePosition());
+        return distance;
     }
 }

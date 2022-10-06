@@ -11,7 +11,6 @@ public class UIHandler : Helper
     
     [SerializeField] Image image;
     
-    float distance;
     bool canRenderLine;
 
     [SerializeField] GameObject pickPositionPanel;
@@ -30,10 +29,7 @@ public class UIHandler : Helper
     }
 
     void Update()
-    {
-        base.Update();
-        distance = Vector3.Distance(player.transform.position, mousePosition);
-        
+    {               
         if (canRenderLine)
         {
             LineRendererTing();
@@ -44,7 +40,7 @@ public class UIHandler : Helper
     void LineRendererTing()
     {
         line.SetPosition(0, player.transform.position);
-        line.SetPosition(1, mousePosition);
+        line.SetPosition(1, GetMousePosition());
     }
 
     public void CanLineRender()
@@ -61,7 +57,7 @@ public class UIHandler : Helper
 
     void UpdateSlider()
     {
-        image.fillAmount = distance / slingMovement.GetMaxDistance();
+        image.fillAmount = GetDistance() / slingMovement.GetMaxDistance();
     }
 
     public void UpdateCollectedText()
