@@ -24,7 +24,11 @@ public class Collisions_G : Helper_G
         float speed = lastVelocity.magnitude;
         Vector3 direction = Vector3.Reflect(lastVelocity.normalized, collision.contacts[0].normal);
 
-        if (collision.gameObject.tag == "Wall") rigidbody.velocity = direction * speed ;
+        if (collision.gameObject.tag == "Wall")
+        {
+            rigidbody.velocity = direction * speed;
+            audioHandler.PlayWallBonk();
+        }
         if (collision.gameObject.tag == "Bounce")
         {
             rigidbody.velocity = direction * (speed + bouncePadForce);

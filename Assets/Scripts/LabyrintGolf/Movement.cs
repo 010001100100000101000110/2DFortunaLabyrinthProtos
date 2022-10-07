@@ -12,12 +12,14 @@ public class Movement : Helper_G
     public int launchAmount { get; private set; }
     public Vector3 lastPosition { get; private set; }
     float currentDrag;
+    float currentAngularDrag;
 
     void Start()
     {
         ballUI = FindObjectOfType<UIHandler_G>();
         canLaunch = true;
         currentDrag = rigidbody.drag;
+        currentAngularDrag = rigidbody.angularDrag;
     }
 
 
@@ -82,11 +84,16 @@ public class Movement : Helper_G
     }
     void StopBallVelocity()
     {
-        if (rigidbody.velocity.magnitude < 0.7 && rigidbody.velocity.magnitude > 0) rigidbody.drag = 50;
+        if (rigidbody.velocity.magnitude < 0.7 && rigidbody.velocity.magnitude > 0)
+        {
+            rigidbody.drag = 50;
+            rigidbody.angularDrag = 50;
+        }
         if (rigidbody.velocity.magnitude == 0)
         {
             eventMethods.BallStopped();
             rigidbody.drag = currentDrag;
+            rigidbody.angularDrag = currentAngularDrag;
         }
     }
 

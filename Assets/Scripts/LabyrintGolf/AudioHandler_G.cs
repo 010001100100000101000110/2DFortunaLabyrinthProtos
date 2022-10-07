@@ -9,6 +9,7 @@ public class AudioHandler_G : MonoBehaviour
     [SerializeField] AudioClip fallIntoHole;
     [SerializeField] AudioClip teleport;
     [SerializeField] AudioClip gameFinished;
+    [SerializeField] AudioClip wallBonk;
 
     // Start is called before the first frame update
     void Start()
@@ -30,5 +31,9 @@ public class AudioHandler_G : MonoBehaviour
     public void PlayGameFinished()
     {
         audioSource.PlayOneShot(gameFinished);
+    }
+    public void PlayWallBonk()
+    {
+        audioSource.PlayOneShot(wallBonk);
     }
 }
