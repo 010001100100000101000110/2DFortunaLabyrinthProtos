@@ -11,6 +11,7 @@ public class StartingPointMover : Helper
     void Start()
     {
         choosingStartPointMode = true;
+        rigidbody.isKinematic = true;
         ResetBallProperties();
     }
 
