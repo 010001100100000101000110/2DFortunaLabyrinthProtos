@@ -2978,6 +2978,11 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.632
       objectReference: {fileID: 0}
+    - target: {fileID: 6289249931323576305, guid: e62b22ebc9513b440ab4a27b0e6a7fff,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6289249931642049263, guid: e62b22ebc9513b440ab4a27b0e6a7fff,
         type: 3}
       propertyPath: m_UiScaleMode
