@@ -17,7 +17,7 @@ public class SlingshotMovement : Helper
     void Start()
     {
         ballUI = FindObjectOfType<UIHandler>();
-        canLaunch = true;
+        //canLaunch = true;
         playerStartingPoint = this.transform.position;
         rigidbody.isKinematic = true;
     }
