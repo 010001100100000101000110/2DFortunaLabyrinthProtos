@@ -6,7 +6,7 @@ public class Movement : Helper_G
 {
     UIHandler_G ballUI; 
     GameObject selected;
-    bool canLaunch;
+    [SerializeField] bool canLaunch;
     [SerializeField] float launchForce;
     [SerializeField] float maxPullDistance;
     public int launchAmount { get; private set; }
@@ -33,6 +33,7 @@ public class Movement : Helper_G
         {
             Collider2D targetObject = Physics2D.OverlapPoint(GetMousePosition());
             if (targetObject) selected = targetObject.transform.gameObject;
+            Debug.Log(targetObject);
         }
         if (selected && selected.tag == "Player") ballUI.CanLineRender();
         if (Input.GetMouseButtonUp(0) && selected && selected.tag == "Player")
