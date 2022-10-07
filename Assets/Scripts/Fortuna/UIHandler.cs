@@ -17,8 +17,11 @@ public class UIHandler : Helper
     [SerializeField] GameObject launchingModePanel;
     [SerializeField] GameObject ballActivePanel;
     [SerializeField] GameObject gameOverPanel;
+    [SerializeField] GameObject gameWonPanel;
 
     [SerializeField] TMP_Text collectedText;
+
+    bool gameWon;
 
     void Start()
     {
@@ -35,6 +38,7 @@ public class UIHandler : Helper
             LineRendererTing();
             UpdateSlider();
         }
+        if(!gameWon)GameWon();
     }
 
     void LineRendererTing()
@@ -65,11 +69,24 @@ public class UIHandler : Helper
         collectedText.text = "collected drops: " + collecting.CollectedDrops.ToString();
     }
 
-    void ResetUIAtStart()
+    public void ResetUIAtStart()
     {
         pickPositionPanel.SetActive(true);
         launchingModePanel.SetActive(false);
         ballActivePanel.SetActive(false);
         gameOverPanel.SetActive(false);
+        gameWonPanel.SetActive(false);
+    }
+    public void GameWon()
+    {
+        if (collecting.CollectedDrops == (collecting.GetDropAmount() / 2))
+        {
+            eventMethods.GameWon();
+            gameWon = true;
+        }
+    }
+    public void GameWonFalse()
+    {
+        gameWon = false;
     }
 }

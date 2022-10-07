@@ -33,4 +33,8 @@ public class Collecting : MonoBehaviour
             collected[i].SetActive(true);
         }
     }
+    public int GetDropAmount()
+    {
+        return collected.Length;
+    }
 }

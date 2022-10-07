@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip boing;
     [SerializeField] AudioClip hitDanger;
     [SerializeField] AudioClip collectedDrop;
+    [SerializeField] AudioClip gameWon;
 
     // Start is called before the first frame update
     void Start()
@@ -25,5 +26,9 @@ public class AudioManager : MonoBehaviour
     public void PlayCollectedDrop()
     {
         audioSource.PlayOneShot(collectedDrop);
+    }
+    public void PlayWin()
+    {
+        audioSource.PlayOneShot(gameWon);
     }
 }
