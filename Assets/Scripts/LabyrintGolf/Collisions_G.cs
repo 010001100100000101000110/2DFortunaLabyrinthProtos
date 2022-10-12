@@ -24,7 +24,11 @@ public class Collisions_G : Helper_G
         float speed = lastVelocity.magnitude;
         Vector3 direction = Vector3.Reflect(lastVelocity.normalized, collision.contacts[0].normal);
 
-        if (collision.gameObject.tag == "Wall") rigidbody.velocity = direction * speed ;
+        if (collision.gameObject.tag == "Wall")
+        {
+            rigidbody.velocity = direction * speed;
+            audioHandler.PlayWallBonk();
+        }
         if (collision.gameObject.tag == "Bounce")
         {
             rigidbody.velocity = direction * (speed + bouncePadForce);
@@ -47,6 +51,7 @@ public class Collisions_G : Helper_G
         if (collision.gameObject.tag == "Finish") eventMethods.GameFinished();
         if (collision.gameObject.tag == "Teleport")
         {
+            PlayerPrefs.SetInt("LaunchesAfterTeleport", 0);
             teleports.Add(collision.gameObject);
             teleports.Add(collision.gameObject.GetComponent<Teleportation>().partnerPortal);
         }
@@ -59,7 +64,7 @@ public class Collisions_G : Helper_G
 
     public void ActivateTeleports()
     {
-        if (teleports.Count != 0)
+        if (teleports.Count != 0 && PlayerPrefs.GetInt("LaunchesAfterTeleport") == 1)
         {
             for (int i = 0; i < teleports.Count; i++)
             {
@@ -69,6 +74,11 @@ public class Collisions_G : Helper_G
             }
             teleports.Clear();
         }        
+    }
+
+    public void AddToTeleportPlayerPrefs()
+    {
+        PlayerPrefs.SetInt("LaunchesAfterTeleport", 1);
     }
 
     IEnumerator HoleAnimation()
