@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Collisions_G : Helper_G
 {
@@ -9,6 +10,7 @@ public class Collisions_G : Helper_G
     float linearDrag;
     [SerializeField] float frictionDrag;
     [SerializeField] List<GameObject> teleports = new List<GameObject>(2);
+    
 
     private void Start()
     {
@@ -40,6 +42,7 @@ public class Collisions_G : Helper_G
     {
         if (collision.gameObject.tag == "Hole")
         {
+            SceneManager.LoadScene("Final_Teemu");
             transform.position = collision.gameObject.transform.position;
             movement.ResetMovement();
             StartCoroutine(HoleAnimation());
