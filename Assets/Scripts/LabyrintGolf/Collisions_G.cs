@@ -55,6 +55,11 @@ public class Collisions_G : Helper_G
             teleports.Add(collision.gameObject);
             teleports.Add(collision.gameObject.GetComponent<Teleportation>().partnerPortal);
         }
+        if (collision.gameObject.tag == "Recharge") //
+        {
+            movement.RechargeLaunchAmount(); //
+            uiHandler.UpdateStrokeAmount(); //
+        }
     }
 
     void OnTriggerExit2D(Collider2D collision)

@@ -9,6 +9,7 @@ public class EventListenerMethods_G : MonoBehaviour
     [SerializeField] GameEvent OnBallTeleported;
     [SerializeField] GameEvent OnGameFinished;
     [SerializeField] GameEvent OnRetry;
+    [SerializeField] GameEvent OnChargesDrained; //
 
     public void BallLaunched()
     {
@@ -29,5 +30,10 @@ public class EventListenerMethods_G : MonoBehaviour
     public void Retry()
     {
         OnRetry?.Raise();
+    }
+
+    public void ChargesDrained() //
+    {
+        OnChargesDrained?.Raise(); //
     }
 }

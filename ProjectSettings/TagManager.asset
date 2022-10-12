@@ -12,6 +12,7 @@ TagManager:
   - Friction
   - Collect
   - Teleport
+  - Recharge
   layers:
   - Default
   - TransparentFX

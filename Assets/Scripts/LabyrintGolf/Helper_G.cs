@@ -11,6 +11,7 @@ public class Helper_G : MonoBehaviour
     public Movement movement { get; private set; }
     public AudioHandler_G audioHandler { get; private set; }
     public float distance { get; private set; }
+    public UIHandler_G uiHandler { get; private set; } //
     void Awake()
     {
         player = GameObject.FindWithTag("Player");
@@ -18,6 +19,7 @@ public class Helper_G : MonoBehaviour
         eventMethods = FindObjectOfType<EventListenerMethods_G>();
         movement = player.GetComponent<Movement>();
         audioHandler = FindObjectOfType<AudioHandler_G>();
+        uiHandler = FindObjectOfType<UIHandler_G>(); //
     }
 
     public float GetDistance()

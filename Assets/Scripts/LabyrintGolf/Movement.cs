@@ -14,12 +14,16 @@ public class Movement : Helper_G
     float currentDrag;
     float currentAngularDrag;
 
+    [SerializeField] int launchesLeft; //
+    [SerializeField] int launchCapacity; //
+
     void Start()
     {
         ballUI = FindObjectOfType<UIHandler_G>();
         canLaunch = true;
         currentDrag = rigidbody.drag;
         currentAngularDrag = rigidbody.angularDrag;
+        launchesLeft = launchCapacity;
     }
 
 
@@ -35,7 +39,6 @@ public class Movement : Helper_G
         {
             Collider2D targetObject = Physics2D.OverlapPoint(GetMousePosition());
             if (targetObject) selected = targetObject.transform.gameObject;
-            Debug.Log(targetObject);
         }
         if (selected && selected.tag == "Player") ballUI.CanLineRender();
         if (Input.GetMouseButtonUp(0) && selected && selected.tag == "Player")
@@ -106,4 +109,23 @@ public class Movement : Helper_G
         launchAmount = 0;
     }
 
+    //
+    public int LaunchesLeft()
+    {
+        return launchesLeft;
+    }
+    public void RechargeLaunchAmount()
+    {
+        launchesLeft = launchCapacity;
+    }
+    public void SubtractFromLaunchAmountLeft()
+    {
+        launchesLeft--;
+    }
+
+    public void CheckIfNoCharges()
+    {
+        if (launchesLeft == 0) eventMethods.ChargesDrained();
+    }
+    //
 }

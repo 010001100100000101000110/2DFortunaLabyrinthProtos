@@ -52,6 +52,8 @@ public class UIHandler_G : Helper_G
 
     public void UpdateStrokeAmount()
     {
-        strokeCountingText.text = "Launches: " + movement.launchAmount.ToString();
+        //strokeCountingText.text = "Launches: " + movement.launchAmount.ToString();
+
+        strokeCountingText.text = "Launches left: " + movement.LaunchesLeft().ToString(); //        
     }
 }
