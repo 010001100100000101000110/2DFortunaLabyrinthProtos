@@ -12,15 +12,22 @@ public class Helper_G : MonoBehaviour
     public AudioHandler_G audioHandler { get; private set; }
     public float distance { get; private set; }
     public UIHandler_G uiHandler { get; private set; } //
-    void Awake()
+
+    public void Awake()
+    {
+        Initialize();
+    }
+
+    public void Initialize()
     {
         player = GameObject.FindWithTag("Player");
-        rigidbody = player.GetComponent<Rigidbody2D>();
         eventMethods = FindObjectOfType<EventListenerMethods_G>();
         movement = player.GetComponent<Movement>();
         audioHandler = FindObjectOfType<AudioHandler_G>();
         uiHandler = FindObjectOfType<UIHandler_G>(); //
+        rigidbody = player.GetComponent<Rigidbody2D>();
     }
+
 
     public float GetDistance()
     {

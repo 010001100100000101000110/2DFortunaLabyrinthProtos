@@ -17,13 +17,17 @@ public class Movement : Helper_G
     [SerializeField] int launchesLeft; //
     [SerializeField] int launchCapacity; //
 
+    private void OnEnable()
+    {
+        launchesLeft = launchCapacity;
+    }
+
     void Start()
     {
         ballUI = FindObjectOfType<UIHandler_G>();
         canLaunch = true;
         currentDrag = rigidbody.drag;
-        currentAngularDrag = rigidbody.angularDrag;
-        launchesLeft = launchCapacity;
+        currentAngularDrag = rigidbody.angularDrag;        
     }
 
 
