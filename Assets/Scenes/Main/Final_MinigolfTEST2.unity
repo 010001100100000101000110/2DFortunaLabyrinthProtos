@@ -225,7 +225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &23126018
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1282,17 +1282,17 @@ PrefabInstance:
     - target: {fileID: 5631584677130210375, guid: 5e7a447a51180d3449ec0566ddaee160,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5631584677130210375, guid: 5e7a447a51180d3449ec0566ddaee160,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.603819
+      value: 17.72
       objectReference: {fileID: 0}
     - target: {fileID: 5631584677130210375, guid: 5e7a447a51180d3449ec0566ddaee160,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.5985947
+      value: 8.51
       objectReference: {fileID: 0}
     - target: {fileID: 5631584677130210375, guid: 5e7a447a51180d3449ec0566ddaee160,
         type: 3}
@@ -1344,6 +1344,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5631584677223017086, guid: 5e7a447a51180d3449ec0566ddaee160,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.58
+      objectReference: {fileID: 0}
     - target: {fileID: 5631584677223017087, guid: 5e7a447a51180d3449ec0566ddaee160,
         type: 3}
       propertyPath: m_Layer
@@ -1352,12 +1357,12 @@ PrefabInstance:
     - target: {fileID: 5631584678066257225, guid: 5e7a447a51180d3449ec0566ddaee160,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5631584678066257225, guid: 5e7a447a51180d3449ec0566ddaee160,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 25.5
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5631584678066257226, guid: 5e7a447a51180d3449ec0566ddaee160,
         type: 3}
@@ -19885,7 +19890,7 @@ LineRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 858fe0bdb6931124cbcbadd14c2714d1, type: 2}
@@ -19908,7 +19913,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 50
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -24976,7 +24981,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4698877082201357345}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.8, y: 46.7, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.69, y: 0.69, z: 0.69}
   m_ConstrainProportionsScale: 0
   m_Children:
