@@ -7,8 +7,8 @@ public class Collisions_G : Helper_G
     Vector3 lastVelocity;
     [SerializeField] float bouncePadForce;
     float linearDrag;
-    [SerializeField] float frictionDrag;
-    [SerializeField] List<GameObject> teleports = new List<GameObject>(2);
+    [SerializeField] float frictionAreaDrag;
+    List<GameObject> teleports = new List<GameObject>(2);
 
     private void Start()
     {
@@ -46,7 +46,7 @@ public class Collisions_G : Helper_G
             audioHandler.PlayFallIntoHole();
         }
 
-        if (collision.gameObject.tag == "Friction") rigidbody.drag = frictionDrag;
+        if (collision.gameObject.tag == "Friction") rigidbody.drag = frictionAreaDrag;
 
         if (collision.gameObject.tag == "Finish") eventMethods.GameFinished();
         if (collision.gameObject.tag == "Teleport")
@@ -59,6 +59,7 @@ public class Collisions_G : Helper_G
         {
             movement.RechargeLaunchAmount(); //
             uiHandler.UpdateStrokeAmount(); //
+            collision.gameObject.SetActive(false); //
         }
     }
 
@@ -84,6 +85,17 @@ public class Collisions_G : Helper_G
     public void AddToTeleportPlayerPrefs()
     {
         PlayerPrefs.SetInt("LaunchesAfterTeleport", 1);
+    }
+    public void RestartTeleportPlayerPrefs()
+    {
+        PlayerPrefs.SetInt("LaunchesAfterTeleport", 1);
+        for (int i = 0; i < teleports.Count; i++)
+        {
+            teleports[i].GetComponent<Teleportation>().canTeleport = true;
+            teleports[i].GetComponent<Teleportation>().ReturnOriginalColor();
+            teleports[i].GetComponent<Collider2D>().enabled = true;
+        }
+        teleports.Clear();
     }
 
     IEnumerator HoleAnimation()
