@@ -5,6 +5,7 @@ using UnityEngine;
 public class Teleportation : Helper_G
 {
     public GameObject partnerPortal;
+    Teleportation partnerTeleportation;
     //[SerializeField] float teleportCooldownTime;
 
     public bool canTeleport;
@@ -13,23 +14,41 @@ public class Teleportation : Helper_G
     SpriteRenderer renderer;
     SpriteRenderer partnerRenderer;
 
-    Collider2D collider;
-    Collider2D partnerCollider;
+    CapsuleCollider2D collider;
+    CapsuleCollider2D partnerCollider;
 
     Color32 originalColor;
     void Start()
     {
+        partnerTeleportation = partnerPortal.GetComponent<Teleportation>();
         renderer = GetComponent<SpriteRenderer>();
         partnerRenderer = partnerPortal.GetComponent<SpriteRenderer>();
 
-        collider = GetComponent<Collider2D>();
-        partnerCollider = partnerPortal.GetComponent<Collider2D>();
+        collider = GetComponent<CapsuleCollider2D>();
+        partnerCollider = partnerPortal.GetComponent<CapsuleCollider2D>();
 
 
         canTeleport = true;
         originalColor = renderer.color;
 
     }
+
+    public void EnableTeleport()
+    {
+        Debug.Log("kys");
+        
+        renderer.color = originalColor;
+        collider.enabled = true;
+        canTeleport = true;
+        tpEnabled = true;
+
+        partnerRenderer.color = partnerTeleportation.originalColor;
+        partnerCollider.enabled = true;
+        partnerTeleportation.canTeleport = true;
+        partnerTeleportation.tpEnabled = true;
+    }
+
+    [SerializeField]bool oneTimeUse;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -43,12 +62,24 @@ public class Teleportation : Helper_G
             partnerCollider.enabled = false;
             audioHandler.PlayTeleport();
             collision.gameObject.transform.position = partnerPortal.transform.position;
+            tpEnabled = false;
+            if (oneTimeUse)
+            {
+                partnerPortal.SetActive(false);
+                gameObject.SetActive(false);
+            }
+       
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        
-    }
+
+    public bool tpEnabled;
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        EnableTeleport();
+    //    }
+    //}
     public void ReturnOriginalColor()
     {
         renderer.color = originalColor;

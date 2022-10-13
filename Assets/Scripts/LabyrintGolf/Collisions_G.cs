@@ -42,7 +42,7 @@ public class Collisions_G : Helper_G
     {
         if (collision.gameObject.tag == "Hole")
         {
-            SceneManager.LoadScene("Final_Teemu");
+            SceneManager.LoadScene("Final_Non Linear Level");
             transform.position = collision.gameObject.transform.position;
             movement.ResetMovement();
             StartCoroutine(HoleAnimation());
