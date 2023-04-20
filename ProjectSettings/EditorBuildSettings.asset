@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main/Final_MinigolfTEST.unity
-    guid: 0d98c884c387d6445973d8bcec09b0ff
+    path: Assets/Scenes/Main/Final_MinigolfTEST2.unity
+    guid: f844accb1b488074d8e238ad8f12dd3c
   m_configObjects: {}
